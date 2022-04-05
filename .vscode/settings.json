@@ -1,0 +1,18 @@
+{
+	"Lua.diagnostics.globals": [
+		"import",
+		"term",
+		"colors",
+		"debugLog",
+		"paintutils",
+		"keys",
+		"sleep",
+		"parallel",
+		"shell",
+		"textutils"
+	],
+	"Lua.diagnostics.disable": [
+		"deprecated",
+		"lowercase-global"
+	]
+}
