@@ -80,14 +80,14 @@ local bodies = {
         })
     },
     {
-        mass = 1e9,
+        mass = 1e8,
         velocity = vec({
             -0.12,
             0,
         })
     },
     {
-        mass = 5e9,
+        mass = 1e10,
         velocity = vec({
             0.1,
             -0.04,
@@ -96,7 +96,7 @@ local bodies = {
     {
         mass = 1e11,
         velocity = vec({
-            -3,
+            3,
             -0.3,
         })
     }
