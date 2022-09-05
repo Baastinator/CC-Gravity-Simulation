@@ -107,35 +107,41 @@ local function Start()
     -- setBodies()
 end
 
-local gd = {}
 
 local function Update()
     local bodyCount = 5
     local timeScale = 100
     local dt = 1/100
 
+    local gd = {}
+    gd.r = {}
+    gd.a = {}
+    gd.rt = {}
+
     for i=1,bodyCount do
-        gd["r"..i] = particles[i]
+        gd.r[i] = particles[i]
     end
 
     for i=1,bodyCount do
+        gd.rt[i] = {}
         for j=1,bodyCount do
             if (i~=j) then
-                gd["r"..i.."_"..j] = gd["r"..j] - gd["r"..i]
+                gd.rt[i][j] = gd.r[j] - gd.r[i]
             end
         end
     end
 
     for i=1,bodyCount do
+        gd.a[i] = {}
         for j=1,bodyCount do
             if (i~=j) then
                 -- debugLog({gd=gd, j=j, i=i,bodies = bodies},"GD")
-                gd['a'..i.."_"..j] =
+                gd.a[i][j] =
                 (timeScale*dt) * ( 
                         (gravConstant * 
                         bodies[j].mass / 
-                        gd['r'..i.."_"..j]:length()^3)
-                        * gd['r'..i.."_"..j] 
+                        gd.rt[i][j]:length()^3)
+                        * gd.rt[i][j]
                     )
             end
         end
@@ -145,7 +151,7 @@ local function Update()
         local sum = vec({0,0})
         for j=1,bodyCount do
             if (i~=j) then
-                sum = sum + gd['a'..i.."_"..j]
+                sum = sum + gd.a[i][j]
             end
         end
         bodies[i].velocity = bodies[i].velocity + (timeScale * dt * sum)
